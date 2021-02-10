@@ -19,37 +19,37 @@ int main()
     int n{};
     tryAgain:
     system("cls");
-    cout << "Îáåð³òü âàð³àíò çàïîâíåííÿ ìàñèâó\n1)Âðó÷íó 2)Àâòîìàòè÷íî 3)Ç ôàéëó\n";
+    cout << "ÃŽÃ¡Ã¥Ã°Â³Ã²Ã¼ Ã¢Ã Ã°Â³Ã Ã­Ã² Ã§Ã Ã¯Ã®Ã¢Ã­Ã¥Ã­Ã­Ã¿ Ã¬Ã Ã±Ã¨Ã¢Ã³\n1)Ã‚Ã°Ã³Ã·Ã­Ã³ 2)Ã€Ã¢Ã²Ã®Ã¬Ã Ã²Ã¨Ã·Ã­Ã® 3)Ã‡ Ã´Ã Ã©Ã«Ã³\n";
     int sw{get_Arguments()};
     switch (sw)
     {
     case 1 :
         {
-            cout << "Ââåä³òü ê³ëüê³ñòü åëåìåíò³â ìàñèâó\n";
+            cout << "Ã‚Ã¢Ã¥Ã¤Â³Ã²Ã¼ ÃªÂ³Ã«Ã¼ÃªÂ³Ã±Ã²Ã¼ Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã²Â³Ã¢ Ã¬Ã Ã±Ã¨Ã¢Ã³\n";
             do
             {
                 n = get_Arguments();
                 if(n < 2 || n > 100)
-                    cout << "Ñïðîáóéòå ùå\n";
+                    cout << "Ã‘Ã¯Ã°Ã®Ã¡Ã³Ã©Ã²Ã¥ Ã¹Ã¥\n";
             }while(n < 2 || n > 100);
             int mas[n];
             for(int i{}; i < n; i++)
                 {
-                    cout << i+1 << ")åëåìåíò = ";
+                    cout << i+1 << ")Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = ";
                     mas[i] = get_Arguments();
                     if(mas[i] > 1e+6 || mas[i] < -1e+6)
                     {
-                        cout << "Ñïðîáóéòå ùå ðàç\n";
+                        cout << "Ã‘Ã¯Ã°Ã®Ã¡Ã³Ã©Ã²Ã¥ Ã¹Ã¥ Ã°Ã Ã§\n";
                         i--;
                     }
                 }
             sort(mas, mas + n, comp);
-            cout << "Íàéìåíøèé åëåìåíò = " << mas[0] << endl;
+            cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << mas[0] << endl;
             break;
         }
     case 2 :
         {
-            webcam.open("Ôàéë_âèâîäó_ðàíäîìíèõ_çíà÷åíü.txt", ios_base::out | ios_base::trunc);
+            webcam.open("Ã”Ã Ã©Ã«_Ã¢Ã¨Ã¢Ã®Ã¤Ã³_Ã°Ã Ã­Ã¤Ã®Ã¬Ã­Ã¨Ãµ_Ã§Ã­Ã Ã·Ã¥Ã­Ã¼.txt", ios_base::out | ios_base::trunc);
             srand((time(0) + 1));
             n = rand() % 100 + 2;
             cout << "n = " << n << endl;
@@ -61,27 +61,27 @@ int main()
                 webcam << i+1 << ")mas = " << mas[i] << endl;
             }
             sort(mas, mas + n, comp);
-            cout << "Íàéìåíøèé åëåìåíò = " << mas[0] << endl;
+            cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << mas[0] << endl;
             webcam.close();
             break;
         }
     case 3:
         {
             ifstream webcam;
-            webcam.open("3_ââ³ä.txt", ios_base::in);
+            webcam.open("3_Ã¢Ã¢Â³Ã¤.txt", ios_base::in);
             int mas[100];
             for(int i{}; i < 100; i++)
             {
                 webcam >> mas[i];
             }
             sort(mas, mas + 100, comp);
-            cout << "Íàéìåíøèé åëåìåíò = " << mas[0] << endl;
+            cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << mas[0] << endl;
             webcam.close();
             break;
         }
     default :
         {
-            cout << "Âè îáðàëè íåâ³ðíèé âàð³àíò\n";
+            cout << "Ã‚Ã¨ Ã®Ã¡Ã°Ã Ã«Ã¨ Ã­Ã¥Ã¢Â³Ã°Ã­Ã¨Ã© Ã¢Ã Ã°Â³Ã Ã­Ã²\n";
             goto tryAgain;
         }
     }
