@@ -23,38 +23,38 @@ int main()
     //start = clock();
     tryAgain:
     system("cls");
-    cout << "Îáåð³òü âàð³àíò çàïîâíåííÿ ìàñèâó\n1)Âðó÷íó 2)Àâòîìàòè÷íî 3)Ç ôàéëó\n";
+    cout << "ÃŽÃ¡Ã¥Ã°Â³Ã²Ã¼ Ã¢Ã Ã°Â³Ã Ã­Ã² Ã§Ã Ã¯Ã®Ã¢Ã­Ã¥Ã­Ã­Ã¿ Ã¬Ã Ã±Ã¨Ã¢Ã³\n1)Ã‚Ã°Ã³Ã·Ã­Ã³ 2)Ã€Ã¢Ã²Ã®Ã¬Ã Ã²Ã¨Ã·Ã­Ã® 3)Ã‡ Ã´Ã Ã©Ã«Ã³\n";
     int sw{get_Arguments()};
     //start = clock();
     switch (sw)
     {
     case 1 :
         {
-            cout << "Ââåä³òü ê³ëüê³ñòü åëåìåíò³â ìàñèâó\n";
+            cout << "Ã‚Ã¢Ã¥Ã¤Â³Ã²Ã¼ ÃªÂ³Ã«Ã¼ÃªÂ³Ã±Ã²Ã¼ Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã²Â³Ã¢ Ã¬Ã Ã±Ã¨Ã¢Ã³\n";
             do
             {
                 n = get_Arguments();
                 if(n < 2 || n > 100)
-                    cout << "Ñïðîáóéòå ùå\n";
+                    cout << "Ã‘Ã¯Ã°Ã®Ã¡Ã³Ã©Ã²Ã¥ Ã¹Ã¥\n";
             }while(n < 2 || n > 100);
             for(int i{}; i < n; i++)
                 {
-                    cout << i+1 << ")åëåìåíò = ";
+                    cout << i+1 << ")Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = ";
                     mas[i] = get_Arguments();
                     if(mas[i] > 1e+6 || mas[i] < -1e+6)
                     {
-                        cout << "Ñïðîáóéòå ùå ðàç\n";
+                        cout << "Ã‘Ã¯Ã°Ã®Ã¡Ã³Ã©Ã²Ã¥ Ã¹Ã¥ Ã°Ã Ã§\n";
                         i--;
                     }
                 }
                 start = clock();
             //sort(mas, mas + n, comp);
-            //cout << "Íàéìåíøèé åëåìåíò = " << mas[0] << endl;
+            //cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << mas[0] << endl;
             break;
         }
     case 2 :
         {
-            webcam.open("Ôàéë_âèâîäó_ðàíäîìíèõ_çíà÷åíü.txt", ios_base::out | ios_base::trunc);
+            webcam.open("Ã”Ã Ã©Ã«_Ã¢Ã¨Ã¢Ã®Ã¤Ã³_Ã°Ã Ã­Ã¤Ã®Ã¬Ã­Ã¨Ãµ_Ã§Ã­Ã Ã·Ã¥Ã­Ã¼.txt", ios_base::out | ios_base::trunc);
             srand((time(0) + 1));
             n = rand() % 100 + 2;
             cout << "n = " << n << endl;
@@ -66,7 +66,7 @@ int main()
                 cout << i+1 << ")mas = " << mas[i] << endl;
             }
             //sort(mas, mas + n, comp);
-            //cout << "Íàéìåíøèé åëåìåíò = " << mas[0] << endl;
+            //cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << mas[0] << endl;
             webcam.close();
             start = clock();
             break;
@@ -74,7 +74,7 @@ int main()
     case 3:
         {
             ifstream webcam;
-            webcam.open("3_ââ³ä.txt", ios_base::in);
+            webcam.open("3_Ã¢Ã¢Â³Ã¤.txt", ios_base::in);
             for(int i{}; i < 100; i++)
             {
                 webcam >> mas[i];
@@ -82,14 +82,14 @@ int main()
             }
             n = 100;
             //sort(mas, mas + 100, comp);
-            //cout << "Íàéìåíøèé åëåìåíò = " << mas[0] << endl;
+            //cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << mas[0] << endl;
             webcam.close();
             start = clock();
             break;
         }
     default :
         {
-            cout << "Âè îáðàëè íåâ³ðíèé âàð³àíò\n";
+            cout << "Ã‚Ã¨ Ã®Ã¡Ã°Ã Ã«Ã¨ Ã­Ã¥Ã¢Â³Ã°Ã­Ã¨Ã© Ã¢Ã Ã°Â³Ã Ã­Ã²\n";
             goto tryAgain;
         }
     }
@@ -97,11 +97,11 @@ int main()
     {
         int endOfArrayIndex(n - iteration);
 
-        bool swapped(false); // îòñëåæèâàåì, áûëè ëè âûïîëíåíû çàìåíû â ýòîé èòåðàöèè
+        bool swapped(false); // Ã®Ã²Ã±Ã«Ã¥Ã¦Ã¨Ã¢Ã Ã¥Ã¬, Ã¡Ã»Ã«Ã¨ Ã«Ã¨ Ã¢Ã»Ã¯Ã®Ã«Ã­Ã¥Ã­Ã» Ã§Ã Ã¬Ã¥Ã­Ã» Ã¢ Ã½Ã²Ã®Ã© Ã¨Ã²Ã¥Ã°Ã Ã¶Ã¨Ã¨
 
         for (int currentIndex = 0; currentIndex < endOfArrayIndex; ++currentIndex)
         {
-            // Åñëè òåêóùèé ýëåìåíò áîëüøå ýëåìåíòà, ñëåäóþùåãî çà íèì,
+            // Ã…Ã±Ã«Ã¨ Ã²Ã¥ÃªÃ³Ã¹Ã¨Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã¡Ã®Ã«Ã¼Ã¸Ã¥ Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã²Ã , Ã±Ã«Ã¥Ã¤Ã³Ã¾Ã¹Ã¥Ã£Ã® Ã§Ã  Ã­Ã¨Ã¬,
             if (mas[currentIndex] > mas[currentIndex + 1])
             {
                 swap(mas[currentIndex], mas[currentIndex + 1]);
@@ -109,7 +109,7 @@ int main()
             }
         }
 
-        // Åñëè â ýòîé èòåðàöèè íå âûïîëíèëîñü íè îäíîé çàìåíû, òî öèêë ìîæíî çàâåðøàòü
+        // Ã…Ã±Ã«Ã¨ Ã¢ Ã½Ã²Ã®Ã© Ã¨Ã²Ã¥Ã°Ã Ã¶Ã¨Ã¨ Ã­Ã¥ Ã¢Ã»Ã¯Ã®Ã«Ã­Ã¨Ã«Ã®Ã±Ã¼ Ã­Ã¨ Ã®Ã¤Ã­Ã®Ã© Ã§Ã Ã¬Ã¥Ã­Ã», Ã²Ã® Ã¶Ã¨ÃªÃ« Ã¬Ã®Ã¦Ã­Ã® Ã§Ã Ã¢Ã¥Ã°Ã¸Ã Ã²Ã¼
         if (!swapped)
         {
             break;
@@ -121,11 +121,11 @@ int main()
         if(n_e > mas[i])
             n_e = mas[i];
     stop = clock();
-    cout << "Íàéìåíøèé åëåìåíò = " << n_e << endl;
+    cout << "ÃÃ Ã©Ã¬Ã¥Ã­Ã¸Ã¨Ã© Ã¥Ã«Ã¥Ã¬Ã¥Ã­Ã² = " << n_e << endl;
     //for(int i{}; i < n; i++)
     //cout << i+1 << ")mas = " << mas[i] << endl;
     double time_of_prog{(stop - start) / CLK_TCK};
-    cout << scientific << "×àñ íà îá÷èñëåííÿ = " << time_of_prog << endl;
+    cout << scientific << "Ã—Ã Ã± Ã­Ã  Ã®Ã¡Ã·Ã¨Ã±Ã«Ã¥Ã­Ã­Ã¿ = " << time_of_prog << endl;
     }while(end_of_Program());
     return 0;
 }
