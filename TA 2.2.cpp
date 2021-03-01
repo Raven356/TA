@@ -61,7 +61,7 @@ int main()
 
     for(int i = 0; i < n; i++)
     {
-        for(int j = 0; j < n; j++)    //âèâ³ä ìàòðèö³
+        for(int j = 0; j < n; j++)    //Ã¢Ã¨Ã¢Â³Ã¤ Ã¬Ã Ã²Ã°Ã¨Ã¶Â³
         cout << m[i][j] << " ";
     cout << endl;
     }
