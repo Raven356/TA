@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <cstdlib>
 #include <ctime>
+#include <cstring>
 
 struct graf{
 int stepeni;
@@ -13,6 +14,7 @@ using namespace std;
 void ShowGraf(graf arr[22],int n);
 int CheckColor(graf arr[22],int n);
 void InitGraf(graf arr[22],int n);
+int check_Argument();
 int m[20000][20000] = {};
 int main()
 {
@@ -31,13 +33,13 @@ int main()
             }
             cout << "Enter amount of tops of graf\n";
             int n{};
-            cin >> n;
+            n = check_Argument();
             cout << "Enter amount of connections\n";
             int con{};
-            cin >> con;
+            con = check_Argument();
             cout << "1 - rand\t2 - mainualy\n";
             int sw{};
-            cin >> sw;
+            sw = check_Argument();
             if(sw == 2)
             cout << "Enter connections\n";
             int x1{}, y1{};
@@ -171,4 +173,27 @@ int CheckColor(graf arr[80],int n)
       }
    if(flag2==n) return 0;
    else return 1;
+}
+int check_Argument()
+{
+    int x;
+    do
+    {
+        cin >> x;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(32767, '\n');
+            cout << "You entered wrong symbol\n";
+            continue;
+        }
+        char c[256];
+        fgets(c, 256, stdin);
+        if(strlen(c) > 1)
+        {
+            cout << "There were some wrong symbols , try again please\n";
+            continue;
+        }
+        return x;
+    }while(true);
 }
