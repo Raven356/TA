@@ -11,6 +11,7 @@ int n,e,i,j;
 vector<vector<int> > graph;
 vector<int> color;
 bool vis[100011];
+int check_Argument();
 
 void greedyColoring()
 {
@@ -59,7 +60,10 @@ int main()
     cout<<"\n";
     cout << "1 - rand\t2 - mainualy\n";
     int sw{};
-    cin >> sw;
+    again:
+    sw = check_Argument();
+    if(sw != 1 && sw != 2)
+        goto again;
     int itter{};
     graph.resize(n);
     color.resize(n);
@@ -113,4 +117,28 @@ int main()
     cout << "Time = " << scientific << (stop-start) / 1e5 << endl;
     }
     while(getch() != 27);
+}
+
+int check_Argument()
+{
+    int x;
+    do
+    {
+        cin >> x;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(32767, '\n');
+            cout << "You entered wrong symbol\n";
+            continue;
+        }
+        char c[256];
+        fgets(c, 256, stdin);
+        if(strlen(c) > 1)
+        {
+            cout << "There were some wrong symbols , try again please\n";
+            continue;
+        }
+        return x;
+    }while(true);
 }
