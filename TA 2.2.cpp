@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
+#include <cstdlib>
+#include <ctime>
+#include <conio.h>
 
 using namespace std;
 
@@ -39,36 +42,75 @@ void greedyColoring()
     }
 }
 
+int  m[20000][20000]{};
 int main()
 {
-    int x,y, m[80][80]{};
+    do
+    {
+    system("cls");
+    for(int i = 0; i < 20000; i++)
+        for(int j = 0; j < 20000; j++)
+        {
+            m[i][j] = 0;
+        }
+    int x,y;
     cout<<"Enter number of vertices and edges respectively:";
     cin>>n>>e;
     cout<<"\n";
+    cout << "1 - rand\t2 - mainualy\n";
+    int sw{};
+    cin >> sw;
+    int itter{};
     graph.resize(n);
     color.resize(n);
+    if (sw == 1)
+        srand(time(0));
     memset(vis,0,sizeof(vis));
-    for(i=0;i<e;i++)
+    for(i=0;i<e;i++, itter++)
     {
+        if(sw == 2)
+        {
         cout<<"\nEnter edge vertices of edge "<<i+1<<" :";
         cin>>x>>y;
+        }
+        if(sw == 1)
+            {
+                if(itter > 0)
+                    srand(itter + 1);
+                    x = rand() % (n-1) + 1;
+                    y = rand() % (n-1) + 2;
+                    if(x == y && (y < n-1))
+                        y++;
+                    if(x == y && (y > n-1 && y > 2))
+                        y--;
+            }
         x--; y--;
+        if(x != y)
+        {
         graph[x].push_back(y);
         graph[y].push_back(x);
         m[x][y] = 1;
         m[y][x] = 1;
+        }
+        else
+            i--;
     }
-
+    if(n < 100)
     for(int i = 0; i < n; i++)
     {
-        for(int j = 0; j < n; j++)    //âèâ³ä ìàòðèö³
+        for(int j = 0; j < n; j++)    //вивід матриці
         cout << m[i][j] << " ";
     cout << endl;
     }
     cout << endl;
+    double start = clock();
     greedyColoring();
+    double stop = clock();
     for(i=0;i<n;i++)
     {
         cout<<"Vertex "<<i+1<<" is coloured "<<color[i]+1<<"\n";
     }
+    cout << "Time = " << scientific << (stop-start) / 1e5 << endl;
+    }
+    while(getch() != 27);
 }
