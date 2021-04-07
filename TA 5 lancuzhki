@@ -1,0 +1,132 @@
+#include <iostream>
+#include <list>
+#include <ctime>
+#include <conio.h>
+
+using namespace std;
+
+class Hash
+{
+    int BUCKET;    // No. of buckets
+
+    // Pointer to an array containing buckets
+    list<int>* table;
+public:
+    Hash(int V);  // Constructor
+
+    // inserts a key into hash table
+    void insertItem(int x);
+
+    // deletes a key from hash table
+    void deleteItem(int key);
+
+    // hash function to map values to key
+    int hashFunction(int x) {
+        return (x % BUCKET);
+    }
+
+    void displayHash();
+};
+
+Hash::Hash(int b)
+{
+    this->BUCKET = b;
+    table = new list<int>[BUCKET];
+}
+
+void Hash::insertItem(int key)
+{
+    int index = hashFunction(key);
+    table[index].push_back(key);
+}
+
+void Hash::deleteItem(int key)
+{
+    // get the hash index of key
+    int index = hashFunction(key);
+
+    // find the key in (inex)th list
+    list <int> ::iterator i;
+    for (i = table[index].begin();
+        i != table[index].end(); i++) {
+        if (*i == key)
+            break;
+    }
+
+    // if key is found in hash table, remove it
+    if (i != table[index].end())
+        table[index].erase(i);
+}
+
+// function to display hash table
+void Hash::displayHash() {
+    for (int i = 0; i < BUCKET; i++) {
+        cout << i;
+        for (auto x : table[i])
+            cout << " --> " << x;
+        cout << endl;
+    }
+}
+
+// Driver program 
+int main()
+{
+    do
+    {
+        system("cls");
+        double start, stop;
+        int amount;
+        cout << "Enter amount of elements for hashing: ";
+        // array that contains keys to be mapped
+        cin >> amount;
+        srand(time(0));
+        int* a = new int[amount];
+        list<int> j;
+        for (int i{}; i < amount; i++)
+        {
+            a[i] = rand();
+            j.push_back(a[i]);
+        }
+        //int a[] = { 15, 11, 27, 8, 12 , 700, 800, 6, 454, 76, 89};
+        //int n = sizeof(a) / sizeof(a[0]);
+
+        int am_buck = rand() % amount + 1;
+        start = time(0);
+        // insert the keys into the hash table
+        Hash h(am_buck);   // 8 is count of buckets in
+                     // hash table
+        for (int i = 0; i < amount; i++)
+            h.insertItem(a[i]);
+        stop = time(0);
+        if(amount < 1000)
+        h.displayHash();
+        cout << "\nTime for inserting = " << (stop - start) / 1e-20;
+        // delete  from hash table
+        cout << "\n\nEnter how many elements you want to delete:";
+        cin >> amount;
+        int i;
+        start = time(0);
+            for (int l = 0; l < amount; l++)
+            {
+                
+                i = rand() % j.size() + 0;
+                auto c = j.begin();
+                for (int k{}; k < i; k++, c++);
+                if (amount < 1000)
+                cout << "Element for deleting = " << *c << endl;
+                h.deleteItem(*c);
+                j.erase(c);
+                
+                
+            }
+        stop = time(0);
+        cout << "\nAfter deleting:\n";
+        // display the Hash table
+        if (amount < 1000)
+        h.displayHash();
+        cout << "\nTime for deleting = " << (stop - start) / 1e-20 << endl;
+        delete[] a;
+        cout << "Press any key or Esc to exit\n";
+    } while (_getch() != 27);
+    return 0;
+}
