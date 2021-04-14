@@ -153,11 +153,15 @@ int main()
 		cout << "Enter how many elements you want to add: ";
 		int amount;
 		cin >> amount;
+		double start, stop;
+		start = clock();
 		for (int i{ 1 }; i <= amount; i++)
 		{
 			int ran = rand() % 77 + 1;
 			h->insertNode(i, h->hashCode(ran));
 		}
+		stop = clock();
+		cout << "Time for inserting: " << (stop - start) / 1e-20 << endl;
 		/*h->insertNode(2, h->hashCode(77));
 		h->insertNode(3, h->hashCode(77));
 		h->insertNode(4, h->hashCode(9));*/
@@ -166,11 +170,14 @@ int main()
 		int amount1;
 		cin >> amount1;
 		int find;
+		start = clock();
 		for (int i{}; i < amount1; i++)
 		{
 			find = rand() % amount + 1;
 			cout << h->get(find) << endl;
 		}
+		stop = clock();
+		cout << "Time for searching: " << (stop - start) / 1e-20 << endl;
 		//cout << "Знайдено: " << h->get(3) << endl;
 		cout << "Розмір: " << h->sizeofMap() << endl;
 	} while (_getch() != 27);
