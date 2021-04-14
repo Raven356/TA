@@ -15,14 +15,16 @@ public:
     Hash(int V);  // Constructor
 
     // inserts a key into hash table
-    void insertItem(int x);
+    void insertItem(int x, int meth);
 
     // deletes a key from hash table
-    void deleteItem(int key);
+    void deleteItem(int key, int meth);
 
     // hash function to map values to key
-    int hashFunction(int x) {
-        return (x % BUCKET);
+    int hashFunction(int x, int method) {
+        if(method == 1)
+            return (x % BUCKET);
+        return (BUCKET * fmod(0.6 * x, 1));
     }
 
     void displayHash();
@@ -34,16 +36,16 @@ Hash::Hash(int b)
     table = new list<int>[BUCKET];
 }
 
-void Hash::insertItem(int key)
+void Hash::insertItem(int key, int meth)
 {
-    int index = hashFunction(key);
+    int index = hashFunction(key, meth);
     table[index].push_back(key);
 }
 
-void Hash::deleteItem(int key)
+void Hash::deleteItem(int key, int meth)
 {
     // get the hash index of key
-    int index = hashFunction(key);
+    int index = hashFunction(key, meth);
 
     // find the key in (inex)th list
     list <int> ::iterator i;
@@ -92,11 +94,14 @@ int main()
 
         int am_buck = rand() % amount + 1;
         start = time(0);
+        cout << "1) / \n2) * \n";
+        int met;
+        cin >> met;
         // insert the keys into the hash table
         Hash h(am_buck);   // 8 is count of buckets in
                      // hash table
         for (int i = 0; i < amount; i++)
-            h.insertItem(a[i]);
+            h.insertItem(a[i], met);
         stop = time(0);
         if(amount < 1000)
         h.displayHash();
@@ -114,7 +119,7 @@ int main()
                 for (int k{}; k < i; k++, c++);
                 if (amount < 1000)
                 cout << "Element for deleting = " << *c << endl;
-                h.deleteItem(*c);
+                h.deleteItem(*c, met);
                 j.erase(c);
                 
                 
