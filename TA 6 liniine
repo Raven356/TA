@@ -158,7 +158,9 @@ int main()
 			int ran = rand() % 77 + 1;
 			h->insertNode(i, h->hashCode(ran));
 		}
-
+		/*h->insertNode(2, h->hashCode(77));
+		h->insertNode(3, h->hashCode(77));
+		h->insertNode(4, h->hashCode(9));*/
 		h->display();
 		cout << "Enter how many elements you want to search: ";
 		int amount1;
@@ -169,7 +171,7 @@ int main()
 			find = rand() % amount + 1;
 			cout << h->get(find) << endl;
 		}
-
+		//cout << "Знайдено: " << h->get(3) << endl;
 		cout << "Розмір: " << h->sizeofMap() << endl;
 	} while (_getch() != 27);
 	return 0;
