@@ -5,9 +5,9 @@
 
 using namespace std;
 // Hash table size
-#define TABLE_SIZE 900000
+#define TABLE_SIZE 1300
 // Used in second hash function.
-#define PRIME 7
+#define PRIME 500
 class DoubleHash {
 	// Pointer to an array containing buckets
 	int* hashTable;
@@ -19,14 +19,18 @@ public:
 		// if hash size reaches maximum size
 		return (curr_size == TABLE_SIZE);
 	} // function to calculate first hash
-	int hash1(int key)
+	int hash1(int key, int method = 0)
 	{
-		return (key % TABLE_SIZE);
+		//if(method == 1)
+			return (key % TABLE_SIZE);
+		//return (TABLE_SIZE * fmod(0.6 * key, 1));
 	}
 	// function to calculate second hash
-	int hash2(int key)
+	int hash2(int key, int method = 0)
 	{
-		return (PRIME - (key % PRIME));
+		//if(method == 1)
+			return (PRIME - (key % PRIME));
+		//return (TABLE_SIZE * fmod(0.6 * key, 1));
 	}
 	DoubleHash()
 	{
@@ -36,20 +40,24 @@ public:
 			hashTable[i] = -1;
 	}
 	// function to insert key into hash table
-	void insertHash(int key)
+	void insertHash(int key, int method = 0)
 	{
 		// if hash table is full
 		if (isFull()) return;
 		// get index from first hash
-		int index = hash1(key);
+		int index = hash1(key, method);
 		// if collision occurs
 		if (hashTable[index] != -1) {
 			// get index2 from second hash
-			int index2 = hash2(key);
+			int index2 = hash2(key, method);
 			int i = 1;
 			while (1) {
 				// get newIndex
-				int newIndex = (index + i * index2) % TABLE_SIZE;
+				int newIndex;
+				//if (method == 1)
+					newIndex = (index + i * index2) % TABLE_SIZE;
+				//else
+					//newIndex = (TABLE_SIZE * fmod(0.6 * (index + i * index2), 1));
 				// if no collision occurs, store
 				// the key
 				if (hashTable[newIndex] == -1) {
@@ -64,18 +72,32 @@ public:
 		curr_size++;
 	}
 	// function to search key in hash table
-	void search(int key)
+	void search(int key, int method = 0)
 	{
-		int index1 = hash1(key);
-		int index2 = hash2(key);
+		int index1 = hash1(key, method);
+		int index2 = hash2(key, method);
 		int i = 0;
-		while (hashTable[(index1 + i * index2) % TABLE_SIZE] != key) {
-			if (hashTable[(index1 + i * index2) % TABLE_SIZE] == -1) {
-				cout << key << " does not exist" << endl;
-				return;
+		//if (method == 1)
+		{
+			while (hashTable[(index1 + i * index2) % TABLE_SIZE] != key) {
+				if (hashTable[(index1 + i * index2) % TABLE_SIZE] == -1) {
+					cout << key << " does not exist" << endl;
+					return;
+				}
+				i++;
 			}
-			i++;
 		}
+		/*else
+		{
+			int table = TABLE_SIZE * fmod(0.6 * (index1 + i * index2), 1);
+			while (hashTable[table] != key) {
+				if (hashTable[table] == -1) {
+					cout << key << " does not exist" << endl;
+					return;
+				}
+				i++;
+			}
+		}*/
 		cout << key << " found" << endl;
 	}
 	// function to display the hash table
@@ -112,6 +134,9 @@ int main()
 		// inserting keys into hash table
 		DoubleHash h;
 		
+		//cout << "1) / \n2) * \n";
+		//int method;
+		//cin >> method;
 		for (int i = 0; i < amount; i++) {
 			h.insertHash(a[i]);
 		}
