@@ -1,0 +1,120 @@
+void Shell1(double *arr, int n)                                       //Обычная последовательность Шилла
+{
+    int d = n / 2;                        //Длина промежутков между элементами
+
+    double time1 = clock() / 1000.0;
+
+    while (d > 0)
+    {
+        for (int i = 0; i < n - d; i++)
+        {
+            int j = i;
+            while (j >= 0 && arr[j] > arr[j + d])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + d];
+                arr[j + d] = temp;
+
+                j--;
+            }
+        }
+        d = d / 2;
+    }
+
+    double time2 = clock() / 1000.0;
+
+    cout << "\nTime : " << time2 - time1 << endl;
+
+    files.open("File.txt", ios_base::app);
+    files << "Для n = " << n << " Шеллом:" << endl << endl;
+    for (int i = 0; i < n; i++)
+    {
+        files << i + 1 << ") mas = " << arr[i] << endl;
+    }
+    files << endl;
+    files.close();
+}
+
+void countSort(double *array, int size) {
+    // The size of count must be at least the (max+1) but
+    // we cannot assign declare it as int count(max+1) in C++ as
+    // it does not support dynamic memory allocation.
+    // So, its size is provided statically.
+    double *output = new double[size];
+    double max = array[0];
+    double time1 = clock() / 1000.0;
+    // Find the largest element of the array
+    for (int i = 1; i < size; i++) {
+        if (array[i] > max)
+            max = array[i];
+    }
+    double* count = new double[max + 1];
+    // Initialize count array with all zeros.
+    for (int i = 0; i <= max; ++i) {
+        count[i] = 0;
+    }
+
+    // Store the count of each element
+    for (int i = 0; i < size; i++) {
+        int key = static_cast<int>(array[i]);
+        count[key]++;
+    }
+
+    // Store the cummulative count of each array
+    for (int i = 1; i <= max; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Find the index of each element of the original array in count array, and
+    // place the elements in output array
+    for (int i = size - 1; i >= 0; i--) {
+        int key = static_cast<int>(array[i]);
+        int key1 = static_cast<int>(count[key]);
+        output[key1 - 1] = array[i];
+        count[key]--;
+    }
+
+    // Copy the sorted elements into original array
+    for (int i = 0; i < size; i++) {
+        array[i] = output[i];
+    }
+    double time2 = clock() / 1000.0;
+    cout << "\nTime : " << time2 - time1 << endl;
+    files.open("File.txt", ios_base::app);
+    files << "Для n = " << size << " Підрахунком:" << endl << endl;
+    for (int i = 0; i < size; i++)
+    {
+        files << i + 1 << ") mas = " << array[i] << endl;
+    }
+    files << endl;
+    files.close();
+    delete[] output;
+    delete[] count;
+}
+
+Alexander Vorona, [05.05.21 11:59]
+void sort_vst(double *x, int n)
+{
+    int iter;
+    double start{}, stop{}, searchtime{};
+    start = clock();
+    for(int i=1;i<n;i++)
+    {
+        for(int j=i;j>0 && x[j-1]>x[j];j--)
+        {
+            //iter++;
+                swap(x[j-1],x[j]);
+        }
+    }
+    stop = clock();
+    searchtime = stop - start;
+    cout << setw(10) << "\tЧас втавками = " << searchtime / CLOCKS_PER_SEC << "\n";
+    files.open("File.txt", ios_base::app);
+    files << "Для n = " << n << " вставками:" << endl << endl;
+    for (int i = 0; i < n; i++)
+    {
+        files << i+1 << ") mas = " << x[i] << endl;
+    }
+    files << endl;
+    files.close();
+}
