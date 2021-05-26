@@ -196,17 +196,14 @@ int main()
         for (int i{}; i < amount_of_chests; i++)
         {
             mas[i] = fmod(rand(), 10000) + 1;
-            if (amount_of_chests < 100)
-                cout << mas[i] << endl;
             mas1[i] = mas[i];
             root->arr.insert(root->arr.end(), mas[i]);
         }
         ofstream file1;
         ifstream file;
         cout << "Для 1 випадку:\n";
-        int n = amount_of_chests / sizeof(mas[0]);
         double start = clock();
-        radixsort(mas1, n);
+        radixsort(mas1, amount_of_chests);
         double stop = clock();
         cout << "LSD = " << (stop - start) / 1000 << endl;
         start = clock();
@@ -220,7 +217,7 @@ int main()
         msd_sort(root, exp, sorted_arr);
         stop = clock();
         cout << "MSD = " << (stop - start) / 1000 << endl;
-        print(mas1,n);
+        print(mas1,amount_of_chests);
         file1.open("File1.txt", ios_base::out);
         for (int i{}; i < amount_of_chests; i++)
         {
@@ -246,17 +243,14 @@ int main()
         for (int i{ amount_of_chests }; i < amount_of_chests + new_chests; i++)
         {
             mas[i] = fmod(rand(), 10000) + 1;
-            if (new_chests < 100)
-                cout << mas[i] << endl;
             mas1[i] = mas[i];
             root->arr.insert(root->arr.end(), mas[i]);
         }
         amount_of_chests += new_chests;
 
         cout << "Для 2 випадку:\n";
-        n = amount_of_chests / sizeof(mas[0]);
         start = clock();
-        radixsort(mas1, n);
+        radixsort(mas1, amount_of_chests);
         stop = clock();
         cout << "LSD = " << (stop - start) / 1000 << endl;
         start = clock();
@@ -269,7 +263,7 @@ int main()
         msd_sort(root, exp, sorted_arr);
         stop = clock();
         cout << "MSD = " << (stop - start) / 1000 << endl;
-        print(mas1, n);
+        print(mas1, amount_of_chests);
         file1.open("File1.txt", ios_base::out);
         for (int i{}; i < amount_of_chests; i++)
         {
@@ -293,8 +287,6 @@ int main()
         for (int i{ amount_of_chests }; i < amount_of_chests + new_chests; i++)
         {
             mas[i] = fmod(rand(), 10000) + 1;
-            if (new_chests < 100)
-                cout << mas[i] << endl;
             mas1[i] = mas[i];
             root->arr.insert(root->arr.end(), mas[i]);
         }
@@ -302,9 +294,8 @@ int main()
 
         file1.close();
         cout << "Для 3 випадку:\n";
-        n = amount_of_chests / sizeof(mas[0]);
         start = clock();
-        radixsort(mas1, n);
+        radixsort(mas1, amount_of_chests);
         stop = clock();
         cout << "LSD = " << (stop - start) / 1000 << endl;
         start = clock();
@@ -314,7 +305,7 @@ int main()
         msd_sort(root, exp, sorted_arr);
         stop = clock();
         cout << "MSD = " << (stop - start) / 1000 << endl;
-        print(mas1, n);
+        print(mas1, amount_of_chests);
         file1.open("File1.txt", ios_base::out);
         for (int i{}; i < amount_of_chests; i++)
         {
